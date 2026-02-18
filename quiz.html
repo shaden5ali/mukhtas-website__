@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار تحديد التخصص</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--  نوع خط الابوننيقCairo -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #86a1d7, #051a39);
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+     margin: 0;
+  max-width: 1200px;
+  margin: auto;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* شاشة البداية */
+#introScreen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(5,26,57,0.95), rgba(134,161,215,0.95));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeOut 1s ease forwards;
+    animation-delay: 3.5s;
+}
+
+.intro-content {
+    text-align: center;
+    color: white;
+    animation: introZoom 2s ease;
+}
+
+.intro-content h1 {
+    font-size: 48px;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.intro-content h2 {
+    font-size: 28px;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+.intro-content p {
+    margin-top: 15px;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+/* حركة الدخول */
+@keyframes introZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* حركة الخروج */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* المحتوى بالبداية */
+.container {
+    max-width: 850px;
+    background: #f5f5efd3;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    opacity: 0;
+    animation: showContent 1s ease forwards;
+    animation-delay: 3.5s;
+}
+
+@keyframes showContent {
+    to {
+        opacity: 1;
+    }
+}
+
+h1 {text-align: center; color: #08255b; margin-bottom: 8px; font-weight:700;}
+.subtitle {text-align:center; color: #555; margin-bottom: 35px; font-size:16px;}
+.question {margin-bottom:28px;}
+.question h3 {font-size:18px; margin-bottom:12px; color:#222; font-weight:600;}
+.options label {
+    display:block;
+    background:#f5f7fb;
+    padding:14px 16px;
+    border-radius:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+.options label:hover {
+    background:#9bb4f0;
+    transform:translateX(-4px);
+}
+input[type="radio"] {margin-left:10px;}
+button {
+    width:100%;
+    padding:16px;
+    background: linear-gradient(135deg, #252a33, #3b82f6);
+    color:#fff;
+    border:none;
+    border-radius:14px;
+    font-size:18px;
+    cursor:pointer;
+    margin-top:20px;
+    transition:0.3s;
+    font-family: 'Cairo', sans-serif;
+}
+button:hover {
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(30,94,216,0.3);
+}
+.result {
+    display:none;
+    margin-top:35px;
+    padding:30px;
+    border-radius:16px;
+    text-align:center;
+    font-size:20px;
+    animation:slideFade 0.8s ease forwards;
+    font-weight:600;
+}
+.result.hr {background: #d0e1f7; color: #0b5394;}
+.result.admin {background: #eefaf4; color: #1d6f42;}
+@keyframes slideFade {
+    from {opacity:0; transform:translateY(35px);}
+    to {opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- شاشة البداية -->
+<div id="introScreen">
+    <div class="intro-content">
+        <h2>جاوب على الأسئلة</h2>
+        <h1>واعرف مسارك المهني</h1>
+        <p>اختبار ذكي يرشّح لك التخصص الأنسب لك</p>
+    </div>
+</div>
+
+<div class="container">
+    <h1>اختبار تحديد التخصص المناسب</h1>
+    <p class="subtitle">أجب بصدق، وسيتم ترشيح التخصص الأنسب لك بناءً على مهاراتك وميولك</p>
+
+    <form id="testForm">
+
+        <div class="question">
+            <h3>1. هل تستمتع بالتعامل مع الموظفين وحل مشاكلهم؟</h3>
+            <div class="options">
+                <label><input type="radio" name="q1" value="hr"> نعم</label>
+                <label><input type="radio" name="q1" value="half_hr"> إلى حد ما</label>
+                <label><input type="radio" name="q1" value=""> لا</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>2. هل تفضل الأعمال التي تعتمد على التواصل والعلاقات؟</h3>
+            <div class="options">
+                <label><input type="radio" name="q2" value="hr"> نعم</label>
+                <label><input type="radio" name="q2" value="half_hr"> إلى حد ما</label>
+                <label><input type="radio" name="q2" value=""> لا</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>3. هل لديك قدرة على الاستماع للآخرين والتفاهم معهم؟</h3>
+            <div class="options">
+                <label><input type="radio" name="q3" value="hr"> نعم</label>
+                <label><input type="radio" name="q3" value="half_hr"> إلى حد ما</label>
+                <label><input type="radio" name="q3" value=""> لا</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>4. هل تهتم بتطوير الموظفين وتحفيزهم؟</h3>
+            <div class="options">
+                <label><input type="radio" name="q4" value="hr"> نعم</label>
+                <label><input type="radio" name="q4" value="half_hr"> إلى حد ما</label>
+                <label><input type="radio" name="q4" value=""> لا</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>5. هل تفضل تنظيم الملفات والمستندات؟</h3>
+            <div class="options">
+                <label><input type="radio" name="q5" value="admin"> نعم</label>
+                <label><input type="radio" name="q5" value="half_admin"> إلى حد ما</label>
+                <label><input type="radio" name="q5" value=""> لا</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>6. هل تشعر بالراحة في الأعمال المكتبية الروتينية؟</h3>
+            <div class="options">
+                <label><input type="radio" name="q6" value="admin"> نعم</label>
+                <label><input type="radio" name="q6" value="half_admin"> إلى حد ما</label>
+                <label><input type="radio" name="q6" value=""> لا</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>7. هل تهتم بالدقة والتفاصيل في العمل؟</h3>
+            <div class="options">
+                <label><input type="radio" name="q7" value="admin"> نعم</label>
+                <label><input type="radio" name="q7" value="half_admin"> إلى حد ما</label>
+                <label><input type="radio" name="q7" value=""> لا</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>8. هل تفضل العمل بهدوء خلف المكتب؟</h3>
+            <div class="options">
+                <label><input type="radio" name="q8" value="admin"> نعم</label>
+                <label><input type="radio" name="q8" value="half_admin"> إلى حد ما</label>
+                <label><input type="radio" name="q8" value=""> لا</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>9. لو أُعطيت الخيار، أي عمل تفضّل أكثر؟</h3>
+            <div class="options">
+                <label><input type="radio" name="tie" value="hr"> التعامل مع الموظفين وحل مشاكلهم</label>
+                <label><input type="radio" name="tie" value="admin"> تنظيم الملفات والأعمال الإدارية</label>
+            </div>
+        </div>
+
+        <button type="button" onclick="calculateResult()">عرض النتيجة</button>
+    </form>
+
+    <div id="resultHR" class="result hr"></div>
+    <div id="resultAdmin" class="result admin"></div>
+</div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const section = urlParams.get('section');
+if(section === "diplomas"){
+    document.querySelector('h1').textContent = "اختبار تحديد التخصص المناسب لك ";
+}
+
+function calculateResult() {
+    const tie = document.querySelector('input[name="tie"]:checked');
+    if (!tie) {
+        alert("يجب عليك الاجابة على السوال الاخير ");
+        return;
+    }
+
+    let hr = 0;
+    let admin = 0;
+
+    document.querySelectorAll('input[type="radio"]:checked').forEach(a => {
+        if (a.value === "hr") hr += 2;
+        if (a.value === "half_hr") hr += 1;
+        if (a.value === "admin") admin += 2;
+        if (a.value === "half_admin") admin += 1;
+    });
+
+    if(tie.value==="hr") hr+=3;
+    if(tie.value==="admin") admin+=3;
+
+    const resultHR=document.getElementById("resultHR");
+    const resultAdmin=document.getElementById("resultAdmin");
+    resultHR.style.display="none";
+    resultAdmin.style.display="none";
+
+    if(hr>admin){
+        resultHR.innerHTML=`التخصص الأنسب لك هو <strong>الموارد البشرية</strong>`;
+        resultHR.style.display="block";
+        resultHR.scrollIntoView({behavior:"smooth"});
+    } else {
+        resultAdmin.innerHTML=`التخصص الأنسب لك هو <strong>الإدارة المكتبية</strong>`;
+        resultAdmin.style.display="block";
+        resultAdmin.scrollIntoView({behavior:"smooth"});
+    }
+}
+</script>
+
+</body>
+</html>
